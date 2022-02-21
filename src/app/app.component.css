@@ -1,0 +1,85 @@
+header {
+    text-align: center;
+}
+
+.lightgray {
+    background-color:lightgray;
+}
+.gray {
+    background-color:gray;
+}
+.green {
+    background-color:green;
+}
+.black {
+    background-color:black;
+}
+.purple {
+    background-color:purple;
+}
+.blue {
+    background-color:blue;
+}   
+.yellow {
+    background-color:yellow;
+}
+.red {
+    background-color:red;
+}
+.white {
+    background-color:white;
+}
+
+.inline{
+    display: flex;
+}
+
+.button-color {
+    width: 75px;
+    height: 75px;
+}
+
+.dot {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.pt {
+    padding-top: 50px; 
+    position: relative;
+}
+
+.pt > span {
+    display: block;
+    position: absolute;
+    top: 25px; 
+    left: 15px;
+}
+
+.square {
+    height: 75px;
+    width: 75px;
+    /* background-color: lightgrey; */
+}
+
+.square > .dot {
+    margin-top: 13px;
+    margin-left: 10px;
+}
+
+.color-choice{
+    margin-left: 35px;
+}
+
+form{
+    position: absolute;
+    margin-left: 25%;
+}
+
+.propositionRight{
+    float: right;
+    top:0;
+    padding-right: 25%;
+}
