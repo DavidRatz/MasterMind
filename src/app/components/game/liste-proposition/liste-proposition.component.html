@@ -1,0 +1,28 @@
+{{ submitted }}
+<ng-container *ngIf="submitted">{{test()}} </ng-container>
+<div class="propositionRight">
+    <table>
+      <tr *ngFor="let combinaison of combinaisonPlayerList">
+        <td>
+          <div class="square" [ngStyle]="{'background-color': combinaison.bcStatusColor1}">
+          <input disabled type="button"  class="dot" [ngStyle]="{'background-color': combinaison.color1!}">
+          </div>
+        </td>
+        <td>
+          <div class="square" [ngStyle]="{'background-color': combinaison.bcStatusColor2}">
+          <input disabled type="button"  class="dot" [ngStyle]="{'background-color': combinaison.color2!}">
+          </div>
+        </td>
+        <td>
+          <div class="square" [ngStyle]="{'background-color': combinaison.bcStatusColor3}">
+          <input disabled type="button"  class="dot" [ngStyle]="{'background-color': combinaison.color3!}">
+          </div>
+        </td>
+        <td>
+          <div class="square" [ngStyle]="{'background-color': combinaison.bcStatusColor4}">
+          <input disabled type="button"  class="dot" [ngStyle]="{'background-color': combinaison.color4!}">
+          </div>
+        </td>
+      </tr>
+    </table>
+</div>

@@ -9,71 +9,10 @@
   <header>
     <h1>{{title}}</h1>
   </header>
-
-  <button (click)="onRestart()" type="button">Recommencer</button>
-
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <div class="inline">
-      <div class="square lightgray">
-        <input disabled type="button" class="dot" [ngClass]="color1">
-        <input type="hidden" [value]="color1" formControlName="color1">
-      </div>
-      <div class="square lightgray">
-        <input disabled type="button" class="dot" [ngClass]="color2">
-        <input type="hidden" [value]="color2" formControlName="color2">
-      </div>
-      <div class="square lightgray">
-        <input disabled type="button" class="dot" [ngClass]="color3">
-        <input type="hidden" [value]="color3" formControlName="color3">
-      </div>
-      <div class="square lightgray">
-        <input disabled type="button"  class="dot" [ngClass]="color4">
-        <input type="hidden" [value]="color4" formControlName="color4">
-      </div>
-    </div>
-
-    <div class="color-choice">
-      <button type="button" (click)="addColor('green')" class="button-color" ><span class="dot green"></span></button>
-      <button type="button" (click)="addColor('black')" class="button-color" ><span class="dot black"></span></button>
-      <button type="button" (click)="addColor('purple')" class="button-color"><span class="dot purple"></span></button>
-      <br>
-      <button type="button" (click)="addColor('blue')" class="button-color"><span class="dot blue"></span></button>
-      <button type="button" (click)="addColor('yellow')" class="button-color"><span class="dot yellow"></span></button>
-      <button type="button" (click)="addColor('red')" class="button-color"><span class="dot red"></span></button>
-      <br>
-      <button type="button" (click)="onReset()" class="button-color pt"><span>Reset</span></button>
-      <button type="button" (click)="addColor('gray')" class="button-color"><span class="dot gray"></span></button>
-      <button type="submit" class="button-color pt"><span>Valider</span></button>
-    </div>
-  </form>
-
-  <div class="propositionRight">
-    <table>
-      <tr *ngFor="let combinaison of combinaisonList">
-        <td>
-          <div class="square" [ngClass]="[combinaison.bcStatusColor1]">
-          <input disabled type="button"  class="dot" [ngClass]="combinaison.color1">
-          </div>
-        </td>
-        <td>
-          <div class="square" [ngClass]="[combinaison.bcStatusColor2]">
-          <input disabled type="button"  class="dot" [ngClass]="combinaison.color2">
-          </div>
-        </td>
-        <td>
-          <div class="square" [ngClass]="[combinaison.bcStatusColor3]">
-          <input disabled type="button"  class="dot" [ngClass]="combinaison.color3">
-          </div>
-        </td>
-        <td>
-          <div class="square" [ngClass]="[combinaison.bcStatusColor4]">
-          <input disabled type="button"  class="dot" [ngClass]="combinaison.color4">
-          </div>
-        </td>
-      </tr>
-    </table>
+  
+  <div>
+    <app-game></app-game>
   </div>
- 
 
 </body>
 </html>

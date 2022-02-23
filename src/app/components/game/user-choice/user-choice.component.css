@@ -1,0 +1,27 @@
+.button-color {
+    width: 75px;
+    height: 75px;
+}
+
+
+.color-choice{
+    margin-left: 35px;
+}
+
+form{
+    position: absolute;
+    margin-left: 25%;
+}
+
+
+.pt {
+    padding-top: 50px; 
+    position: relative;
+}
+
+.pt > span {
+    display: block;
+    position: absolute;
+    top: 25px; 
+    left: 15px;
+}

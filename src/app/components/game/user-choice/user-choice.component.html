@@ -1,0 +1,31 @@
+<button (click)="onRestart()" type="button">Recommencer</button>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="inline">
+        <div class="square" style="background-color: lightgray;">
+        <input disabled type="button" class="dot" [ngStyle]="{'background-color': color1}">
+        <input type="hidden" [value]="color1" formControlName="color1">
+        </div>
+        <div class="square" style="background-color: lightgray;">
+        <input disabled type="button" class="dot" [ngStyle]="{'background-color': color2}">
+        <input type="hidden" [value]="color2" formControlName="color2">
+        </div>
+        <div class="square" style="background-color: lightgray;">
+        <input disabled type="button" class="dot" [ngStyle]="{'background-color': color3}">
+        <input type="hidden" [value]="color3" formControlName="color3">
+        </div>
+        <div class="square" style="background-color: lightgray;">
+        <input disabled type="button"  class="dot" [ngStyle]="{'background-color': color4}">
+        <input type="hidden" [value]="color4" formControlName="color4">
+        </div>
+    </div>
+    <div class="color-choice">
+        <ng-container *ngFor="let buttons of buttonDisplay">
+            <ng-container *ngIf="buttons == ''"><br></ng-container>
+            <ng-container *ngIf="buttons == 'reset'"><button type="button" (click)="onReset()" class="button-color pt"><span>Reset</span></button></ng-container>
+            <ng-container *ngIf="buttons == 'valider'"><button type="submit" class="button-color pt"><span>Valider</span></button></ng-container>
+            <ng-container *ngIf="buttons != 'valider' && buttons != 'reset' && buttons != ''"><button type="button" (click)="addColor(buttons)" class="button-color"><span class="dot" [ngStyle]="{'background-color': buttons}"></span></button></ng-container>
+        </ng-container>
+    </div>
+    
+</form>

@@ -2,3 +2,26 @@
 body {
     background-color: lightseagreen;
 }
+
+.dot {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.square {
+    height: 75px;
+    width: 75px;
+    /* background-color: lightgrey; */
+}
+
+.square > .dot {
+    margin-top: 13px;
+    margin-left: 10px;
+}
+
+
+.inline{
+    display: flex;
+}
