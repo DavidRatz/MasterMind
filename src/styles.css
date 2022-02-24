@@ -8,6 +8,7 @@ body {
     width: 50px;
     border-radius: 50%;
     display: inline-block;
+    border-color: white;
 }
 
 .square {

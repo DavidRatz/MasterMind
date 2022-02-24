@@ -1,16 +1,11 @@
-<p>solution works!</p>
-<p>Combinaison à trouver</p>
-<div class="inline">
-    <div class="square" style="background-color: lightgray;">
-        <input disabled type="button"  class="dot" [ngStyle]="{'background-color': combinaisonWinner.color1!}">
+<ng-container *ngIf="true">
+    <p>Combinaison à trouver</p>
+    <div class="inline">
+        <ng-container *ngFor="let billes of combinaisonWinner.bille">
+            <div class="square" [ngStyle]="{'background-color': 'lightgray'}">
+                <input disabled type="button"  class="dot" [ngStyle]="{'background-color': billes.color}">
+            </div>
+        </ng-container>
     </div>
-    <div class="square" style="background-color: lightgray;">
-        <input disabled type="button"  class="dot" [ngStyle]="{'background-color': combinaisonWinner.color2!}">
-    </div>
-    <div class="square" style="background-color: lightgray;">
-        <input disabled type="button"  class="dot" [ngStyle]="{'background-color': combinaisonWinner.color3!}">
-    </div>
-    <div class="square" style="background-color: lightgray;">
-        <input disabled type="button"  class="dot" [ngStyle]="{'background-color': combinaisonWinner.color4!}">
-    </div>
-</div>
+</ng-container>
+

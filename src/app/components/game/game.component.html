@@ -1,5 +1,6 @@
-<p>game works!</p>
 <app-solution [combinaisonWinner]="combinaisonWinner"></app-solution>
-<app-user-choice [combinaisonWinner]="combinaisonWinner" (combinaisonPlayerList)="getCombinaisonPlayerList($event)" (submit)="submitCheck()"></app-user-choice>
-<!--<app-liste-proposition [combinaisonPlayerList]="combinaisonPlayerList"></app-liste-proposition> -->
-<app-liste-proposition [(submitted)]="submit"  [userChoice]="combinaisonPlayerList"></app-liste-proposition>
+
+<button (click)="onRestart()" type="button">Recommencer</button>
+
+<app-user-choice (combinaisonPlayerList)="getCombinaisonPlayerList($event)"></app-user-choice>
+<app-liste-proposition [combinaisonPlayerList]="combinaisonPlayerList"></app-liste-proposition>
