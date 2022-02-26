@@ -23,7 +23,13 @@ export class GameComponent implements OnInit {
 
   colorList: Array<string> = ["green","black", "purple", "blue","yellow","red","gray"];
 
-  nbreColor: number = 5
+  nbreColor: number = 4;
+  nbreBille: number = 4;
+  nbreEssaiTotal: number = 4;
+  nbreEssai: number = 0;
+
+  gagne: boolean = false;
+  partieFinie: boolean = false;
   constructor() { }
 
   ngOnInit(): void {
@@ -57,10 +63,10 @@ export class GameComponent implements OnInit {
 
   getCombinaisonPlayerList(combinaison: Combinaison){
     console.log(combinaison);
-
+    let nbrBilleCorrect = 0;
     for (let i = 0; i < this.combinaisonWinner.bille!.length; i++) {
       this.combinaisonWinner.bille![i].backgroundColorStatus = undefined;
-      
+      combinaison.bille![i].backgroundColorStatus = undefined;
     }
 
     for (let i = 0; i < combinaison.bille!.length; i++) {
@@ -74,7 +80,7 @@ export class GameComponent implements OnInit {
 
     for (let i = 0; i < combinaison.bille!.length; i++) {
       if(combinaison.bille![i].backgroundColorStatus == "red"){
-        //let stop = false;
+        let stop = false;
         for(let j = 0; j < this.combinaisonWinner.bille!.length; j++) {
           console.log(this.combinaisonWinner.bille![j].backgroundColorStatus);
 
@@ -83,10 +89,10 @@ export class GameComponent implements OnInit {
           
           
           
-          if (this.combinaisonWinner.bille![j].backgroundColorStatus == undefined && combinaison.bille![i].color === this.combinaisonWinner.bille![j].color /*&& !stop*/) {
+          if (this.combinaisonWinner.bille![j].backgroundColorStatus == undefined && combinaison.bille![i].color === this.combinaisonWinner.bille![j].color && !stop) {
             combinaison.bille![i].backgroundColorStatus = "yellow";
             this.combinaisonWinner.bille![j].backgroundColorStatus = "yellow";
-            //stop = true;
+            stop = true;
           }
         }
       }
@@ -133,17 +139,35 @@ export class GameComponent implements OnInit {
     // combinaison.bcStatusColor4 = this.bcStatusColor4;
     
     this.combinaisonPlayerList.push(combinaison);
+    this.nbreEssai++;
     console.log(this.combinaisonPlayerList);
     
+    for (let i = 0; i < combinaison.bille!.length; i++) {
+      const bille = combinaison.bille![i];
+      if(bille.backgroundColorStatus == "green")
+      {
+        nbrBilleCorrect++;
+      }
+    }
 
-    // if(combinaison.color1 === this.combinaisonWinner.color1 && combinaison.color2 === this.combinaisonWinner.color2 && combinaison.color3 === this.combinaisonWinner.color3 && combinaison.color4 === this.combinaisonWinner.color4){
-    //   alert("Vous avez gagné !")
-      
-    // }
+    if(nbrBilleCorrect == this.nbreBille)
+    {
+      alert("Vous avez gagné !")
+      this.partieFinie = true;
+    }
+
+    if(this.nbreEssai == this.nbreEssaiTotal && nbrBilleCorrect < this.nbreBille)
+    {
+      alert("Vous avez perdu !")
+      this.partieFinie = true;
+    }
   }
 
   onRestart(){
     this.getCombinaisonWinner();
     this.combinaisonPlayerList = [];
+    this.nbreEssai = 0;
+    this.partieFinie = false;
+    this.gagne = false;
   }
 }

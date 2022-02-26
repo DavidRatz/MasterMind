@@ -8,6 +8,7 @@ import { GameComponent } from './components/game/game.component';
 import { UserChoiceComponent } from './components/game/user-choice/user-choice.component';
 import { SolutionComponent } from './components/game/solution/solution.component';
 import { ListePropositionComponent } from './components/game/liste-proposition/liste-proposition.component';
+import { ConfigurationComponent } from './components/game/configuration/configuration.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { ListePropositionComponent } from './components/game/liste-proposition/l
     GameComponent,
     UserChoiceComponent,
     SolutionComponent,
-    ListePropositionComponent
+    ListePropositionComponent,
+    ConfigurationComponent
   ],
   imports: [
     BrowserModule,

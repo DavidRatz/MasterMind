@@ -10,6 +10,8 @@ export class SolutionComponent implements OnInit {
 
   @Input()
   combinaisonWinner: Combinaison = {};
+  @Input()
+  partieFinie: boolean = false;
   
 
   constructor() { }
