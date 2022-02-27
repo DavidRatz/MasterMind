@@ -1,1 +1,16 @@
-<p>configuration works!</p>
+<div class="config" *ngIf="displayConfiguration">
+    <h2>Configuration de la partie</h2>
+    <div>
+        <label for="nbTriesDispo">Nombre d'essai</label>
+        <select [(ngModel)]="nbTries"  name="" id="nbTriesDispo">
+            <option *ngFor="let item of listNbTries" [value]="item">{{ item }}</option>
+        </select>
+    </div>
+    <div>
+        <label for="nbBilleDispo">Nombre de billes à trouver</label>
+        <select [(ngModel)]="nbBille"  name="" id="nbBilleDispo">
+            <option *ngFor="let item of listNbBille" [value]="item">{{ item }}</option>
+        </select>
+    </div>
+    <button type="button" (click)="OnStart()">Commencer la partie</button>
+</div>

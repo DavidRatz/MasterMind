@@ -17,11 +17,14 @@ export class UserChoiceComponent implements OnInit {
 
   @Input()
   combinaisonWinner: Combinaison = {};
+  @Input()
+  gameStart: boolean = false;
 
   combinaisonPlayer : Combinaison = {};
   billeList: Bille[] = [];
 
-  nbrBille: number = 4;
+  @Input()
+  nbreBille: number = 4;
 
   @Output()
   combinaisonPlayerList = new EventEmitter<Combinaison>();
@@ -45,7 +48,7 @@ export class UserChoiceComponent implements OnInit {
   }
 
   addColor(color: string){
-    if(this.billeList.length < this.nbrBille){
+    if(this.billeList.length < this.nbreBille){
       let bille: Bille = {
         color: color
       }

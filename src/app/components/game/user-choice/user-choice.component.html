@@ -1,5 +1,5 @@
 <!-- <form [formGroup]="form" (ngSubmit)="onSubmit()"> [formControlName]="'color'+(i+1)" -->
-<div class="panel-color">
+<div class="panel-color" *ngIf="gameStart" > 
     <div class="inline">
         <ng-container *ngFor="let bille of combinaisonPlayer.bille; let i = index">
             <div class="square" style="background-color: lightgray;">
