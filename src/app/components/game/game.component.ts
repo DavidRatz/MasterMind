@@ -10,16 +10,8 @@ import { Combinaison } from 'src/app/models/combinaison.model';
 export class GameComponent implements OnInit {
 
   combinaisonPlayerList: Combinaison[] = [];
-  // combinaisonPlayerList: Combinaison = {};
-
-  submit: boolean = false;
 
   combinaisonWinner: Combinaison = {};
-
-  bcStatusColor1: string = "";
-  bcStatusColor2: string = "";
-  bcStatusColor3: string = "";
-  bcStatusColor4: string = "";
 
   colorList: Array<string> = ["green","black", "purple", "blue","yellow","red","gray"];
 
@@ -36,11 +28,14 @@ export class GameComponent implements OnInit {
   gameStart: boolean = false;
   restart: boolean = false;
 
+  combinaisonWinnerADonner: boolean = false;
+  nbJoueur: number = 1;
+
+  nbColor: number = 7;
+
   constructor() {}
 
-  ngOnInit(): void {
-    // this.getCombinaisonWinner()
-    
+  ngOnInit(): void {    
   }
 
   getRandomInt(max: number) {
@@ -54,87 +49,87 @@ export class GameComponent implements OnInit {
     
     for (let i = 0; i < this.nbreBille; i++) {
       bille = {
-        color: this.colorList[this.getRandomInt(7)]
+        color: this.colorList[this.getRandomInt(this.nbColor)]
         
       }
       billeList.push(bille);
     }
     
-    this.combinaisonWinner.bille = billeList
-    
-    // this.combinaisonWinner.color1 = this.colorList[this.getRandomInt(7)];
-    // this.combinaisonWinner.color2 = this.colorList[this.getRandomInt(7)];
-    // this.combinaisonWinner.color3 = this.colorList[this.getRandomInt(7)];
-    // this.combinaisonWinner.color4 = this.colorList[this.getRandomInt(7)];    
-    // console.log(this.combinaisonWinner);
-    
+    this.combinaisonWinner.bille = billeList    
   }
 
   getCombinaisonPlayerList(combinaison: Combinaison){
     console.log(combinaison);
     let nbrBilleCorrect = 0;
-    if(!this.partieFinie){
-      
-      for (let i = 0; i < this.combinaisonWinner.bille!.length; i++) {
-        this.combinaisonWinner.bille![i].backgroundColorStatus = undefined;
-        combinaison.bille![i].backgroundColorStatus = undefined;
-      }
-
-      for (let i = 0; i < combinaison.bille!.length; i++) {
-        if (combinaison.bille![i].color === this.combinaisonWinner.bille![i].color) {
-          combinaison.bille![i].backgroundColorStatus = "green";
-          this.combinaisonWinner.bille![i].backgroundColorStatus = "green";
+    if(this.combinaisonWinnerADonner && !this.gameStart){
+      this.combinaisonWinner = combinaison;
+      this.combinaisonWinnerADonner = false;
+      console.log(this.combinaisonWinner);
+    }
+    else{    
+      if(!this.partieFinie){
+        
+        for (let i = 0; i < this.combinaisonWinner.bille!.length; i++) {
+          this.combinaisonWinner.bille![i].backgroundColorStatus = undefined;
+          combinaison.bille![i].backgroundColorStatus = undefined;
         }
-        else
-          combinaison.bille![i].backgroundColorStatus = "red";
-      }
 
-      for (let i = 0; i < combinaison.bille!.length; i++) {
-        if(combinaison.bille![i].backgroundColorStatus == "red"){
-          let stop = false;
-          for(let j = 0; j < this.combinaisonWinner.bille!.length; j++) {
-            console.log(this.combinaisonWinner.bille![j].backgroundColorStatus);
+        for (let i = 0; i < combinaison.bille!.length; i++) {
+          if (combinaison.bille![i].color === this.combinaisonWinner.bille![i].color) {
+            combinaison.bille![i].backgroundColorStatus = "green";
+            this.combinaisonWinner.bille![i].backgroundColorStatus = "green";
+          }
+          else
+            combinaison.bille![i].backgroundColorStatus = "red";
+        }
 
-            console.log(combinaison.bille![i].color);
-            console.log(this.combinaisonWinner.bille![j].color);
-            
-            
-            
-            if (this.combinaisonWinner.bille![j].backgroundColorStatus == undefined && combinaison.bille![i].color === this.combinaisonWinner.bille![j].color && !stop) {
-              combinaison.bille![i].backgroundColorStatus = "yellow";
-              this.combinaisonWinner.bille![j].backgroundColorStatus = "yellow";
-              stop = true;
+        for (let i = 0; i < combinaison.bille!.length; i++) {
+          if(combinaison.bille![i].backgroundColorStatus == "red"){
+            let stop = false;
+            for(let j = 0; j < this.combinaisonWinner.bille!.length; j++) {
+              console.log(this.combinaisonWinner.bille![j].backgroundColorStatus);
+
+              console.log(combinaison.bille![i].color);
+              console.log(this.combinaisonWinner.bille![j].color);
+              
+              
+              
+              if (this.combinaisonWinner.bille![j].backgroundColorStatus == undefined && combinaison.bille![i].color === this.combinaisonWinner.bille![j].color && !stop) {
+                combinaison.bille![i].backgroundColorStatus = "yellow";
+                this.combinaisonWinner.bille![j].backgroundColorStatus = "yellow";
+                stop = true;
+              }
             }
           }
         }
-      }
-      
-      this.combinaisonPlayerList.push(combinaison);
-      this.nbreEssai++;
-      console.log(this.combinaisonPlayerList);
-      
-      for (let i = 0; i < combinaison.bille!.length; i++) {
-        const bille = combinaison.bille![i];
-        if(bille.backgroundColorStatus == "green")
-        {
-          nbrBilleCorrect++;
+        
+        this.combinaisonPlayerList.push(combinaison);
+        this.nbreEssai++;
+        console.log(this.combinaisonPlayerList);
+        
+        for (let i = 0; i < combinaison.bille!.length; i++) {
+          const bille = combinaison.bille![i];
+          if(bille.backgroundColorStatus == "green")
+          {
+            nbrBilleCorrect++;
+          }
         }
       }
-    }
-    else {
-      alert("Partie terminée !");
-    }
-    if(nbrBilleCorrect == this.nbreBille)
-    {
-      alert("Vous avez gagné !");
-      this.partieFinie = true;
-      this.restart = true;
-    }
-    if(this.nbreEssai == this.nbreEssaiTotal && nbrBilleCorrect < this.nbreBille)
-    {
-      alert("Vous avez perdu !");
-      this.partieFinie = true;
-      this.restart = true;
+      else {
+        alert("Partie terminée !");
+      }
+      if(nbrBilleCorrect == this.nbreBille)
+      {
+        alert("Vous avez gagné !");
+        this.partieFinie = true;
+        //this.restart = true;
+      }
+      if(this.nbreEssai == this.nbreEssaiTotal && nbrBilleCorrect < this.nbreBille)
+      {
+        alert("Vous avez perdu !");
+        this.partieFinie = true;
+        //this.restart = true;
+      }
     }
     
   }
@@ -152,8 +147,17 @@ export class GameComponent implements OnInit {
   onStartGame(listeConfig: any){
     this.nbreBille = listeConfig['nbreBille'];
     this.nbreEssaiTotal = listeConfig['nbreEssaiTotal'];
-    this.getCombinaisonWinner();
-    this.displayConfiguration = false;
-    this.gameStart = true;
+    this.nbJoueur = listeConfig['nbJoueur'];
+    this.nbColor = parseInt(listeConfig['nbColor']);
+    console.log(this.nbColor);
+    
+    if(this.nbJoueur == 1)
+      this.getCombinaisonWinner();
+    if(!this.combinaisonWinnerADonner){
+      this.displayConfiguration = false;
+      this.gameStart = true;
+    }
+    this.restart = true;
   }
+
 }

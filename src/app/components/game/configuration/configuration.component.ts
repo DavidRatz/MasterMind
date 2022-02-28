@@ -12,19 +12,19 @@ export class ConfigurationComponent implements OnInit {
 
   nbTries: number = 4;
   nbBille: number = 4;
+  nbJoueur: number = 1;
+  nbColor: number = 7;
 
   listNbTries: Array<number> = [2,3,4,5,6,7,8,9];
   listNbBille: Array<number> = [4,5,6,7];
 
   listConfig = {};
-
-  @Output('nbreBille')
-  billeEmmitter = new EventEmitter();
-  @Output('nbreEssaiTotal')
-  triesEmmitter = new EventEmitter();
   
   @Output('listeConfig')
   configEmmitter = new EventEmitter();
+
+  @Output('nbJoueur')
+  joueurEmmitter = new EventEmitter();
 
   constructor() { }
 
@@ -35,12 +35,21 @@ export class ConfigurationComponent implements OnInit {
     console.log(this.nbBille + this.nbTries);
     this.listConfig = {
       'nbreBille' : this.nbBille,
-      'nbreEssaiTotal' : this.nbTries
+      'nbreEssaiTotal' : this.nbTries,
+      'nbJoueur' : this.nbJoueur,
+      'nbColor' : this.nbColor
     }
     console.log(this.listConfig);
     this.configEmmitter.emit(this.listConfig);
     // this.billeEmmitter.emit(this.nbBille);
     // this.triesEmmitter.emit(this.nbTries);
+  }
+
+  onChangeJoueur(){
+    if(this.nbJoueur == 1)
+     this.joueurEmmitter.emit(false)
+    else 
+      this.joueurEmmitter.emit(true)
   }
 
 }

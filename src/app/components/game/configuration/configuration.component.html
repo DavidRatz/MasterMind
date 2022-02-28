@@ -12,5 +12,21 @@
             <option *ngFor="let item of listNbBille" [value]="item">{{ item }}</option>
         </select>
     </div>
+    <div>
+        <label for="nbJoueurChoisi">Nombre de joueurs</label>
+        <select [(ngModel)]="nbJoueur"  name="" id="nbJoueurChoisi" (ngModelChange)="onChangeJoueur()">
+            <option value="1">1</option>
+            <option value="2">2</option>
+        </select>
+    </div>
+    <div>
+        <label for="nbColorChoisi">Nombre de couleurs</label>
+        <select [(ngModel)]="nbColor"  name="" id="nbColorChoisi">
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+        </select>
+    </div>
     <button type="button" (click)="OnStart()">Commencer la partie</button>
 </div>
