@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Combinaison } from 'src/app/models/combinaison.model';
 
 @Component({
   selector: 'app-configuration',
@@ -9,6 +10,8 @@ export class ConfigurationComponent implements OnInit {
 
   @Input()
   displayConfiguration: boolean = true
+  @Input()
+  combinaisonPlayer : Combinaison = {};
 
   nbTries: number = 4;
   nbBille: number = 4;

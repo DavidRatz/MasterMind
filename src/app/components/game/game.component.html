@@ -1,7 +1,7 @@
 <div *ngIf="combinaisonWinnerADonner">
     <app-user-choice [gameStart]="true" [nbreBille]="nbreBille" [nbColor]="nbColor" (combinaisonPlayerList)="getCombinaisonPlayerList($event)"></app-user-choice>
 </div>
-<app-configuration (nbJoueur)="combinaisonWinnerADonner=$event" [displayConfiguration]="displayConfiguration" (listeConfig)="onStartGame($event)"></app-configuration>
+<app-configuration [combinaisonPlayer]="combinaisonWinner" (nbJoueur)="combinaisonWinnerADonner=$event" [displayConfiguration]="displayConfiguration" (listeConfig)="onStartGame($event)"></app-configuration>
 <div *ngIf="restart" class="center">
     <button type="button" (click)="onRestart()"  >Recommencer</button>
 </div>

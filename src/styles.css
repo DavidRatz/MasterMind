@@ -11,6 +11,11 @@ body {
     border-color: white;
 }
 
+.panel-color{
+    position: absolute;
+    margin-left: 15%;
+}
+
 .square {
     height: 75px;
     width: 75px;
@@ -25,4 +30,5 @@ body {
 
 .inline{
     display: flex;
+    justify-content: center;
 }

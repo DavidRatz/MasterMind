@@ -28,5 +28,17 @@
             <option value="7">7</option>
         </select>
     </div>
+    <ng-container *ngIf="nbJoueur==2">
+        <label>Combinaison gagnante : </label>
+        <div class="inline">
+            
+            <ng-container *ngFor="let bille of combinaisonPlayer.bille; let i = index">
+                <div class="square" style="background-color: lightgray;">
+                <input disabled type="button" class="dot" [ngStyle]="{'background-color': bille.color}">
+            
+                </div>
+            </ng-container>        
+        </div>
+    </ng-container>
     <button type="button" (click)="OnStart()">Commencer la partie</button>
 </div>

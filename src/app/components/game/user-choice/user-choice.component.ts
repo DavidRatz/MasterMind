@@ -12,10 +12,6 @@ export class UserChoiceComponent implements OnInit, OnChanges {
 
   colorList: Array<string> = ["green","black", "purple", "blue","yellow","red","gray"];
 
-  
-
-  @Input()
-  combinaisonWinner: Combinaison = {};
   @Input()
   gameStart: boolean = false;
 

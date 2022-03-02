@@ -55,13 +55,16 @@ export class GameComponent implements OnInit {
       billeList.push(bille);
     }
     
-    this.combinaisonWinner.bille = billeList    
+    this.combinaisonWinner.bille = billeList   
+    this.combinaisonWinnerADonner = false; 
   }
 
   getCombinaisonPlayerList(combinaison: Combinaison){
     console.log(combinaison);
     let nbrBilleCorrect = 0;
     if(this.combinaisonWinnerADonner && !this.gameStart){
+      console.log(this.gameStart);
+      
       this.combinaisonWinner = combinaison;
       this.combinaisonWinnerADonner = false;
       console.log(this.combinaisonWinner);
@@ -78,6 +81,7 @@ export class GameComponent implements OnInit {
           if (combinaison.bille![i].color === this.combinaisonWinner.bille![i].color) {
             combinaison.bille![i].backgroundColorStatus = "green";
             this.combinaisonWinner.bille![i].backgroundColorStatus = "green";
+            nbrBilleCorrect++;
           }
           else
             combinaison.bille![i].backgroundColorStatus = "red";
@@ -107,13 +111,13 @@ export class GameComponent implements OnInit {
         this.nbreEssai++;
         console.log(this.combinaisonPlayerList);
         
-        for (let i = 0; i < combinaison.bille!.length; i++) {
-          const bille = combinaison.bille![i];
-          if(bille.backgroundColorStatus == "green")
-          {
-            nbrBilleCorrect++;
-          }
-        }
+        // for (let i = 0; i < combinaison.bille!.length; i++) {
+        //   const bille = combinaison.bille![i];
+        //   if(bille.backgroundColorStatus == "green")
+        //   {
+        //     nbrBilleCorrect++;
+        //   }
+        // }
       }
       else {
         alert("Partie terminée !");
@@ -142,6 +146,9 @@ export class GameComponent implements OnInit {
     this.partieFinie = false;
     this.gagne = false;
     this.gameStart = false;
+    if(this.nbJoueur != 1)
+      this.combinaisonWinnerADonner = true;
+    this.combinaisonWinner = {};
   }
 
   onStartGame(listeConfig: any){
@@ -152,12 +159,14 @@ export class GameComponent implements OnInit {
     console.log(this.nbColor);
     
     if(this.nbJoueur == 1)
-      this.getCombinaisonWinner();
+        this.getCombinaisonWinner();
+    
     if(!this.combinaisonWinnerADonner){
       this.displayConfiguration = false;
       this.gameStart = true;
+      this.restart = true;
     }
-    this.restart = true;
+   
   }
 
 }
